@@ -1,0 +1,24 @@
+<%= form_with(model: message, remote: true) do |form| %>
+  <% if message.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% message.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :room_id, value: room.id %>
+
+  <div class="input-group">
+    <%= form.text_field :content,required: true, placeholder: "Type your message here...", class: 'form-control' %>
+    &nbsp &nbsp
+    <span class="btn btn-large btn-file">
+      <%= image_tag("img.jpg", size:"40x40") %>
+      <%= form.file_field :header_image %>
+    </span>
+    <div class="input-group-append">
+      <%= form.submit "Send", class: "btn btn-primary",id: "send" %> 
+    </div>
+  </div>
+<% end %>
